@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Talkademy_Phase4</string>
+    <string name="simple_button_test">Simple Button Test</string>
 </resources>
