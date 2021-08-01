@@ -93,8 +93,8 @@
         <LinearLayout
             android:id="@+id/input_layout_1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="0"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal"
             android:weightSum="4">
 
@@ -107,7 +107,8 @@
                 android:gravity="center"
                 android:text="@string/del"
                 android:textAlignment="center"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                tools:ignore="NestedWeights" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/reset_btn"
@@ -203,7 +204,6 @@
             android:id="@+id/input_layout_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/input_layout_2"
             android:orientation="horizontal"
             android:weightSum="4">
 
@@ -258,7 +258,6 @@
             android:id="@+id/input_layout_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/input_layout_3"
             android:orientation="horizontal"
             android:weightSum="4">
 
@@ -313,7 +312,6 @@
             android:id="@+id/input_layout_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/input_layout_4"
             android:orientation="horizontal"
             android:weightSum="4">
 
