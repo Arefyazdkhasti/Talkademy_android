@@ -1,0 +1,2 @@
+rootProject.name = "Talkademy_Phase4"
+include ':app'
