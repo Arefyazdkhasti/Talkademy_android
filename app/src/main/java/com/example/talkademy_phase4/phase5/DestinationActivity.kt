@@ -3,8 +3,6 @@ package com.example.talkademy_phase4.phase5
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.example.talkademy_phase4.R
 import com.example.talkademy_phase4.databinding.ActivityDestinationBinding
 import com.example.talkademy_phase4.phase5.StartActivity.Companion.ANSWER_KEY
 import com.example.talkademy_phase4.phase5.StartActivity.Companion.DATA_KEY
