@@ -17,59 +17,23 @@
         android:id="@+id/shown_number_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:minHeight="200dp"
         android:layout_above="@id/input_root"
-        android:layout_below="@id/toolbar">
+        android:layout_below="@id/toolbar"
+        android:minHeight="200dp">
 
-        <RelativeLayout
+
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/operands_operation_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin">
+            android:padding="@dimen/small_margin"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/mega_font"
+            tools:text="8.0 - 3.0 :"
+            android:layout_marginTop="@dimen/standard_margin"
+            android:layout_marginStart="@dimen/standard_margin"/>
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/first"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/small_margin"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mega_font"
-                tools:text="8.0" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/operation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/first"
-                android:padding="@dimen/small_margin"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mega_font"
-                tools:text="-" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/operation"
-                android:padding="@dimen/small_margin"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mega_font"
-                tools:text="5.0" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/semicolon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@id/second"
-                android:padding="@dimen/small_margin"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mega_font"
-                tools:text=":" />
-        </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
@@ -94,38 +58,35 @@
 
         <include
             android:id="@+id/input_layout_1"
-            layout="@layout/input_layout_1"
-            />
+            layout="@layout/input_layout_1" />
 
         <include
             android:id="@+id/input_layout_2"
             layout="@layout/input_layout_2"
-            android:layout_below="@id/input_layout_1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content"/>
+            android:layout_below="@id/input_layout_1" />
+
         <include
             android:id="@+id/input_layout_3"
             layout="@layout/input_layout_3"
-            android:layout_below="@id/input_layout_2"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_2" />
+
         <include
             android:id="@+id/input_layout_4"
             layout="@layout/input_layout_4"
-            android:layout_below="@id/input_layout_3"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_3" />
+
         <include
             android:id="@+id/input_layout_5"
             layout="@layout/input_layout_5"
-            android:layout_below="@id/input_layout_4"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            />
-
-
+            android:layout_height="wrap_content"
+            android:layout_below="@id/input_layout_4" />
 
 
     </RelativeLayout>

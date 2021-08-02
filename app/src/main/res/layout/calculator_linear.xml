@@ -21,12 +21,7 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <LinearLayout
-            android:id="@+id/operands_operation_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/standard_margin"
-            android:orientation="horizontal">
+
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/first"
@@ -36,38 +31,10 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/mega_font"
-                tools:text="8.0" />
+                android:layout_marginTop="@dimen/standard_margin"
+                android:layout_marginStart="@dimen/standard_margin"
+                tools:text="8.0 - 3.0 :" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/operation"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/small_margin"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mega_font"
-                tools:text="-" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/second"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/small_margin"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mega_font"
-                tools:text="5.0" />
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/semicolon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/small_margin"
-                android:textAlignment="center"
-                android:textColor="@color/black"
-                android:textSize="@dimen/mega_font"
-                tools:text=":" />
-        </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
