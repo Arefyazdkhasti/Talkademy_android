@@ -4,9 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.talkademy_phase4.databinding.ActivityDestinationBinding
-import com.example.talkademy_phase4.phase5.StartActivity.Companion.ANSWER_KEY
-import com.example.talkademy_phase4.phase5.StartActivity.Companion.DATA_KEY
-import com.example.talkademy_phase4.phase5.StartActivity.Companion.NO_DATA_RECEIVED
 
 class DestinationActivity : AppCompatActivity() {
 
@@ -45,7 +42,7 @@ class DestinationActivity : AppCompatActivity() {
     }
 
     private fun sendData(data: String) {
-        val intent = Intent(this, StartActivity::class.java)
+        val intent = Intent(applicationContext, StartActivity::class.java)
         intent.putExtra(ANSWER_KEY, data)
         startActivity(intent)
     }

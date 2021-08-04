@@ -7,15 +7,15 @@ import android.widget.Toast
 import com.example.talkademy_phase4.R
 import com.example.talkademy_phase4.databinding.ActivityStartBinding
 
+const val DATA_KEY = "data"
+const val ANSWER_KEY = "answer"
+const val NO_DATA_RECEIVED =  "No data received"
+
 class StartActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityStartBinding
 
-    companion object{
-        const val DATA_KEY = "data"
-        const val ANSWER_KEY = "answer"
-        const val NO_DATA_RECEIVED =  "No data received"
-    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityStartBinding.inflate(layoutInflater)
@@ -36,7 +36,7 @@ class StartActivity : AppCompatActivity() {
     }
 
     private fun sendDataToSecondActivity(data:String) {
-        val intent = Intent(this,DestinationActivity::class.java)
+        val intent = Intent(applicationContext,DestinationActivity::class.java)
         intent.putExtra(DATA_KEY,data)
         startActivity(intent)
     }
@@ -44,6 +44,6 @@ class StartActivity : AppCompatActivity() {
     private fun getAnswer() {
         val answer = intent.getStringExtra(ANSWER_KEY)
         if (answer != null)
-            Toast.makeText(this,answer, Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext,answer, Toast.LENGTH_SHORT).show()
     }
 }

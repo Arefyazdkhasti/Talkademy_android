@@ -15,9 +15,10 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".phase4.MainActivity">
 
         </activity>
-        <activity android:name=".phase4.MainActivity"></activity>
         <activity android:name=".phase5.StartActivity">
 
         </activity>

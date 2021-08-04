@@ -19,6 +19,7 @@ class TestLifeCycleActivity : AppCompatActivity() {
         showToast("onCreate")
     }
 
+
     override fun onRestart() {
         super.onRestart()
         Log.i(LOG_LIFE_CYCLE, "onRestart called")
