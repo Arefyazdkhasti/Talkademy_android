@@ -1,4 +1,4 @@
-package com.example.talkademy_phase4
+package com.example.talkademy_phase4.phase4
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        bindUI();
+        bindUI()
     }
 
     private fun bindUI(){
