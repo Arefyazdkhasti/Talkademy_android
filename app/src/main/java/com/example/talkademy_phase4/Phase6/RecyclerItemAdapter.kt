@@ -4,18 +4,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.talkademy_phase4.databinding.RecyclerItemViewBinding
+import com.example.talkademy_phase4.databinding.ItemRecyclerViewBinding
 
 class RecyclerItemAdapter(
     private val data: ArrayList<String>
 ) : RecyclerView.Adapter<RecyclerItemAdapter.ItemViewHolder>() {
 
-    private lateinit var binding: RecyclerItemViewBinding
+    private lateinit var binding: ItemRecyclerViewBinding
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
 
         binding =
-            RecyclerItemViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemRecyclerViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ItemViewHolder(binding.root)
     }
@@ -31,6 +31,8 @@ class RecyclerItemAdapter(
         data.add(text)
         notifyDataSetChanged()
     }
+
+    fun getItems(): List<String> = data
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setText(text: String) {

@@ -10,4 +10,6 @@
     
     <color name="darkGray">#455b65</color>
     <color name="lightGray">#607d8b</color>
+
+    <color name="silver">#C0C0C0</color>
 </resources>
