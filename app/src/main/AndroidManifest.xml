@@ -9,15 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Talkademy_Phase4">
-        <activity android:name=".phase5.TestLifeCycleActivity">
-
-        </activity>
-        <activity android:name=".phase4.MainActivity">
-
-        </activity>
-        <activity android:name=".phase5.StartActivity">
-           
-        </activity>
+        <activity android:name=".phase5.TestLifeCycleActivity"></activity>
+        <activity android:name=".phase4.MainActivity"></activity>
+        <activity android:name=".phase5.StartActivity"></activity>
         <activity android:name=".phase5.DestinationActivity" />
     </application>
 
