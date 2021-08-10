@@ -1,4 +1,4 @@
-package com.example.talkademy_phase4.Phase6
+package com.example.talkademy_phase4.phase6
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
