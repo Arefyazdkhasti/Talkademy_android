@@ -29,11 +29,14 @@ class Phase6Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPhase6Binding.inflate(inflater, container, false)
-        initRecycler()
-        bindUI()
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecycler()
+        bindUI()
+    }
 
     private fun initRecycler() {
         textList = arrayListOf()
@@ -55,11 +58,9 @@ class Phase6Fragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.checkbox.isChecked) {
-                    if (s != null) {
-                        if (s.toString() == TALKACADEMY) {
-                            addItemToTheRecyclerView(s.toString())
-                        }
+                if (s != null && binding.checkbox.isChecked) {
+                    if (s.toString() == TALKACADEMY) {
+                        addItemToTheRecyclerView(s.toString())
                     }
                 }
             }
@@ -103,13 +104,12 @@ class Phase6Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (savedInstanceState != null) {
-            onConfiguredList = savedInstanceState.getStringArrayList(LIST_BUNDLE_KEY)!!
+        if (savedInstanceState == null) return
 
-            onConfiguredList.forEach {
-                itemAdapter.addItem(it)
-            }
-        }
+
+        onConfiguredList = savedInstanceState.getStringArrayList(LIST_BUNDLE_KEY) ?: arrayListOf()
+        onConfiguredList.forEach {itemAdapter.addItem(it)}
+
     }
 
     override fun onDestroy() {
