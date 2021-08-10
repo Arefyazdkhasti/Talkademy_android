@@ -55,12 +55,8 @@ class Phase6Fragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (binding.checkbox.isChecked) {
-                    if (s != null) {
-                        if (s.toString() == TALKACADEMY) {
-                            addItemToTheRecyclerView(s.toString())
-                        }
-                    }
+                if (s != null && binding.checkbox.isChecked && s.toString() == TALKACADEMY) {
+                    addItemToTheRecyclerView(s.toString())
                 }
             }
 
@@ -103,13 +99,11 @@ class Phase6Fragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        if (savedInstanceState != null) {
-            onConfiguredList = savedInstanceState.getStringArrayList(LIST_BUNDLE_KEY)!!
+        if (savedInstanceState == null) return
+        onConfiguredList = savedInstanceState.getStringArrayList(LIST_BUNDLE_KEY)!!
 
-            onConfiguredList.forEach {
-                itemAdapter.addItem(it)
-            }
-        }
+        onConfiguredList.forEach { itemAdapter.addItem(it) }
+
     }
 
     override fun onDestroy() {

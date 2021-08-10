@@ -27,16 +27,18 @@ class RecyclerItemAdapter(
 
     override fun getItemCount(): Int = data.size
 
-    fun addItem(text: String){
+    fun addItem(text: String) {
         data.add(text)
-        notifyDataSetChanged()
+        //notifyDataSetChanged()
+        notifyItemInserted(data.size - 1)
     }
 
     fun getItems(): List<String> = data
 
     inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setText(text: String) {
-            binding.textViewItemRecyclerView.text = text
+            if (::binding.isInitialized)
+                binding.textViewItemRecyclerView.text = text
         }
     }
 
