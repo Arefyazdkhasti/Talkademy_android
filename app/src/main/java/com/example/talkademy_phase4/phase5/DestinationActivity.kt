@@ -23,7 +23,7 @@ class DestinationActivity : AppCompatActivity() {
     private fun getDataFromIntent() {
         val data = intent.getStringExtra(DATA_KEY)
 
-        if (data != null)
+        if (!data.isNullOrEmpty())
             binding.sampleReceivedText.text = data
         else
             binding.sampleReceivedText.text = NO_DATA_RECEIVED
@@ -42,9 +42,10 @@ class DestinationActivity : AppCompatActivity() {
     }
 
     private fun sendData(data: String) {
-        val intent = Intent(applicationContext, StartActivity::class.java)
+        val intent = Intent()
         intent.putExtra(ANSWER_KEY, data)
-        startActivity(intent)
+        setResult(RESULT_CODE, intent)
+        finish()
     }
 
 }

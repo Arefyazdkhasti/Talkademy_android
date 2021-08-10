@@ -1,15 +1,18 @@
 package com.example.talkademy_phase4.phase5
 
+import android.R.attr
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.example.talkademy_phase4.R
+import androidx.appcompat.app.AppCompatActivity
 import com.example.talkademy_phase4.databinding.ActivityStartBinding
 
-const val DATA_KEY = "data"
-const val ANSWER_KEY = "answer"
-const val NO_DATA_RECEIVED =  "No data received"
+
+const val DATA_KEY = "com.example.talkademy_phase4.data"
+const val ANSWER_KEY = "com.example.talkademy_phase4.answer"
+const val NO_DATA_RECEIVED = "No data received"
+const val REQUEST_CODE = 1
+const val RESULT_CODE = 2
 
 class StartActivity : AppCompatActivity() {
 
@@ -24,7 +27,6 @@ class StartActivity : AppCompatActivity() {
 
         bindUI()
 
-        getAnswer()
     }
 
     private fun bindUI() {
@@ -35,15 +37,23 @@ class StartActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendDataToSecondActivity(data:String) {
-        val intent = Intent(applicationContext,DestinationActivity::class.java)
-        intent.putExtra(DATA_KEY,data)
-        startActivity(intent)
+    private fun sendDataToSecondActivity(data: String) {
+        val intent = Intent(applicationContext, DestinationActivity::class.java)
+        intent.putExtra(DATA_KEY, data)
+        startActivityForResult(intent, REQUEST_CODE)
     }
 
-    private fun getAnswer() {
-        val answer = intent.getStringExtra(ANSWER_KEY)
-        if (answer != null)
-            Toast.makeText(applicationContext,answer, Toast.LENGTH_SHORT).show()
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_CODE) {
+            if (resultCode == RESULT_CODE) {
+                val res: Bundle? = data?.extras
+                val result = res?.getString(ANSWER_KEY)
+
+                if (!result.isNullOrEmpty())
+                    Toast.makeText(applicationContext, result, Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
