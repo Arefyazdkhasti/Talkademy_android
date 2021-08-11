@@ -14,6 +14,7 @@ import com.example.talkademy_phase4.phase7.enumerian.Continent
 
 
 const val REQUEST_CONTINENTS = 12
+const val CONTINENTS_KEY = "com.example.talkademy_phase4.continent_key"
 
 class CountryFragment : Fragment() {
 
@@ -56,12 +57,12 @@ class CountryFragment : Fragment() {
     }
 
     private fun launchSettingFragment() {
-        val newFragment = SettingFragment()
-        val tag = SettingFragment::class.java.simpleName
+        val newFragment = SettingFragment().newInstance(changeContinentToString())
 
         newFragment.setTargetFragment(this, REQUEST_CONTINENTS)
-        (activity as CountriesListActivity).loadFragment(newFragment, tag)
+        (activity as CountriesListActivity).loadFragment(newFragment, "SettingFragment")
     }
+
 
     private fun bindUI() {
         println(continent)
@@ -94,5 +95,13 @@ class CountryFragment : Fragment() {
     fun setContinent(list: List<Continent>) {
         continent.clear()
         continent.addAll(list)
+    }
+
+    fun changeContinentToString(): ArrayList<String>{
+        val list = ArrayList<String>()
+        continent.forEach {
+            list.add(it.toString())
+        }
+        return list
     }
 }

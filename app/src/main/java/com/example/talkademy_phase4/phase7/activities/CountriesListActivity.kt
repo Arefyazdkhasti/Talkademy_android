@@ -1,8 +1,8 @@
 package com.example.talkademy_phase4.phase7.activities
 
-import androidx.fragment.app.Fragment
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.example.talkademy_phase4.R
 import com.example.talkademy_phase4.databinding.ActivityCountriesListBinding
 import com.example.talkademy_phase4.phase7.Interfaces.IOnBackPressed
@@ -29,21 +29,15 @@ class CountriesListActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.country_setting_fragment_container_view, fragment, tag)
             .addToBackStack(tag)
-            .addToBackStack(null)
             .commit()
     }
 
-    /*override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 1) {
-            finish()
-        } else {
-            super.onBackPressed()
-    }*/
     override fun onBackPressed() {
         val fragment = this.supportFragmentManager.findFragmentById(R.id.country_setting_fragment_container_view)
         (fragment as? IOnBackPressed)?.onBackPressed()?.let {
             super.onBackPressed()
         }
     }
+
 
 }

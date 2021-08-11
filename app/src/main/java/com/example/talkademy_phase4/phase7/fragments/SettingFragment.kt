@@ -8,11 +8,20 @@ import com.example.talkademy_phase4.phase7.Interfaces.IOnBackPressed
 import com.example.talkademy_phase4.phase7.enumerian.Continent
 
 
-class SettingFragment : Fragment(),IOnBackPressed {
+class SettingFragment : Fragment(), IOnBackPressed {
 
     private var _binding: FragmentSettingBinding? = null
     private val binding
         get() = _binding!!
+
+    fun newInstance(continents: ArrayList<String>): SettingFragment {
+        val args = Bundle().apply {
+            putStringArrayList(CONTINENTS_KEY, continents)
+        }
+        return SettingFragment().apply {
+            arguments = args
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,25 +34,33 @@ class SettingFragment : Fragment(),IOnBackPressed {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.text.setOnClickListener {
-            sendContinents()
-        }
+        val continents = arguments?.getStringArrayList(CONTINENTS_KEY)
+        if (continents != null)
+            bindUI(continents)
 
-        // TODO showing the back button in action bar
-        requireActivity().actionBar?.apply {
-            setHomeButtonEnabled(true)
-            setDisplayHomeAsUpEnabled(true)
-        }
 
         setHasOptionsMenu(true)
     }
 
-    private fun sendContinents() {
-        (targetFragment as? CountryFragment)?.setContinent(getCheckedContinents())
-        activity?.supportFragmentManager?.popBackStackImmediate()
+    private fun bindUI(continent: ArrayList<String>) {
+        if (continent.contains(Continent.AMERICA.toString()))
+            binding.america.isChecked =true
+        if (continent.contains(Continent.AFRICA.toString()))
+            binding.africa.isChecked = true
+        if (continent.contains(Continent.ASIA.toString()))
+            binding.asia.isChecked = true
+        if (continent.contains(Continent.EUROPE.toString()))
+            binding.europe.isChecked = true
+        if (continent.contains(Continent.AUSTRALIA.toString()))
+            binding.australia.isChecked = true
     }
 
-    private fun getCheckedContinents(): List<Continent>{
+
+    private fun sendContinents() {
+        (targetFragment as? CountryFragment)?.setContinent(getCheckedContinents())
+    }
+
+    private fun getCheckedContinents(): List<Continent> {
         val continentList = arrayListOf<Continent>()
 
         if (binding.america.isChecked)
@@ -60,16 +77,7 @@ class SettingFragment : Fragment(),IOnBackPressed {
         return continentList
     }
 
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home -> /*requireActivity().finish()*/ println("home")
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onBackPressed() {
-        //TODO return list
         sendContinents()
     }
 

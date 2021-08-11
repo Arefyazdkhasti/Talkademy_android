@@ -10,11 +10,16 @@ import androidx.appcompat.app.AlertDialog
 import com.example.talkademy_phase4.R
 import com.example.talkademy_phase4.databinding.ActivityCountryDetailBinding
 import com.example.talkademy_phase4.phase7.adapter.COUNTRY_NAME
+import com.example.talkademy_phase4.phase7.adapter.ViewPagerAdapter
 import com.example.talkademy_phase4.phase7.dataClass.Country
+import com.example.talkademy_phase4.phase7.fragments.FirstFragment
+import com.example.talkademy_phase4.phase7.fragments.SecondFragment
+import com.example.talkademy_phase4.phase7.fragments.ThirdFragment
 
 class CountryDetailActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCountryDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -30,7 +35,9 @@ class CountryDetailActivity : AppCompatActivity() {
                 setHomeButtonEnabled(true)
                 setDisplayHomeAsUpEnabled(true)
             }
+            bindUI(country)
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -69,4 +76,13 @@ class CountryDetailActivity : AppCompatActivity() {
 
     }
 
+    private fun bindUI(country: Country){
+        val adapter = ViewPagerAdapter(supportFragmentManager)
+        adapter.addFragment(FirstFragment(country.list[0]),"1")
+        adapter.addFragment(SecondFragment(country.list[1]),"2")
+        adapter.addFragment(ThirdFragment(country.list[2]),"3")
+
+        binding.viewPager.adapter = adapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+    }
 }

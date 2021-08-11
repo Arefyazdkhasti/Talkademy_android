@@ -5,6 +5,5 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class CountrySite(
-    val image:String,
     val content:String
 ):Parcelable
