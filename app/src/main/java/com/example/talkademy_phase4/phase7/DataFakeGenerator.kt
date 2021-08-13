@@ -1,5 +1,7 @@
-package com.example.talkademy_phase4.phase7.dataClass
+package com.example.talkademy_phase4.phase7
 
+import com.example.talkademy_phase4.phase7.dataClass.Country
+import com.example.talkademy_phase4.phase7.dataClass.CountrySite
 import com.example.talkademy_phase4.phase7.enumerian.Continent
 
 class DataFakeGenerator {

@@ -9,7 +9,7 @@ import com.example.talkademy_phase4.databinding.FragmentCountryBinding
 import com.example.talkademy_phase4.phase7.activities.CountriesListActivity
 import com.example.talkademy_phase4.phase7.adapter.CountryAdapter
 import com.example.talkademy_phase4.phase7.dataClass.Country
-import com.example.talkademy_phase4.phase7.dataClass.DataFakeGenerator
+import com.example.talkademy_phase4.phase7.DataFakeGenerator
 import com.example.talkademy_phase4.phase7.enumerian.Continent
 
 
