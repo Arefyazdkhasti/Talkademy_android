@@ -35,24 +35,19 @@ class SettingFragment : Fragment(), IOnBackPressed {
         super.onViewCreated(view, savedInstanceState)
 
         val continents = arguments?.getStringArrayList(CONTINENTS_KEY)
-        if (continents != null)
-            bindUI(continents)
+
+        if (continents != null) bindUI(continents)
 
 
         setHasOptionsMenu(true)
     }
 
     private fun bindUI(continent: ArrayList<String>) {
-        if (continent.contains(Continent.AMERICA.toString()))
-            binding.america.isChecked =true
-        if (continent.contains(Continent.AFRICA.toString()))
-            binding.africa.isChecked = true
-        if (continent.contains(Continent.ASIA.toString()))
-            binding.asia.isChecked = true
-        if (continent.contains(Continent.EUROPE.toString()))
-            binding.europe.isChecked = true
-        if (continent.contains(Continent.AUSTRALIA.toString()))
-            binding.australia.isChecked = true
+            binding.america.isChecked =continent.contains(Continent.AMERICA.toString())
+            binding.africa.isChecked = continent.contains(Continent.AFRICA.toString())
+            binding.asia.isChecked = continent.contains(Continent.ASIA.toString())
+            binding.europe.isChecked = continent.contains(Continent.EUROPE.toString())
+            binding.australia.isChecked = continent.contains(Continent.AUSTRALIA.toString())
     }
 
 

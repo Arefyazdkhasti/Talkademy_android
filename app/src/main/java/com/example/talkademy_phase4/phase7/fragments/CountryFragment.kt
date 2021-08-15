@@ -2,6 +2,7 @@ package com.example.talkademy_phase4.phase7.fragments
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.talkademy_phase4.R
@@ -11,6 +12,7 @@ import com.example.talkademy_phase4.phase7.adapter.CountryAdapter
 import com.example.talkademy_phase4.phase7.dataClass.Country
 import com.example.talkademy_phase4.phase7.DataFakeGenerator
 import com.example.talkademy_phase4.phase7.enumerian.Continent
+import com.example.talkademy_phase4.phase7.util.UIUtils.Companion.loadFragment
 
 
 const val REQUEST_CONTINENTS = 12
@@ -60,7 +62,7 @@ class CountryFragment : Fragment() {
         val newFragment = SettingFragment().newInstance(changeContinentToString())
 
         newFragment.setTargetFragment(this, REQUEST_CONTINENTS)
-        (activity as CountriesListActivity).loadFragment(newFragment, "SettingFragment")
+        loadFragment(activity as AppCompatActivity,newFragment, "SettingFragment")
     }
 
 
@@ -83,7 +85,7 @@ class CountryFragment : Fragment() {
     }
 
     private fun initRecycler(countryList: ArrayList<Country>) {
-        val _adapter = CountryAdapter(requireContext(),countryList)
+        val _adapter = CountryAdapter(countryList)
 
         binding.countryRecyclerView.apply{
             adapter = _adapter
@@ -97,10 +99,10 @@ class CountryFragment : Fragment() {
         continent.addAll(list)
     }
 
-    fun changeContinentToString(): ArrayList<String>{
+    private fun changeContinentToString(): ArrayList<String>{
         val list = ArrayList<String>()
         continent.forEach {
-            list.add(it.toString())
+            list.add(it.name)
         }
         return list
     }

@@ -1,6 +1,5 @@
 package com.example.talkademy_phase4.phase7.activities
 
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -15,6 +14,8 @@ import com.example.talkademy_phase4.phase7.dataClass.Country
 import com.example.talkademy_phase4.phase7.fragments.FirstFragment
 import com.example.talkademy_phase4.phase7.fragments.SecondFragment
 import com.example.talkademy_phase4.phase7.fragments.ThirdFragment
+import com.example.talkademy_phase4.phase7.util.UIUtils.Companion.showToast
+
 
 class CountryDetailActivity : AppCompatActivity() {
 
@@ -26,7 +27,7 @@ class CountryDetailActivity : AppCompatActivity() {
         binding = ActivityCountryDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val country = intent.getParcelableExtra<Country>(COUNTRY_NAME)
+        val country = intent?.getParcelableExtra<Country>(COUNTRY_NAME)
 
         if (country != null) {
             supportActionBar?.title = country.name
@@ -65,15 +66,13 @@ class CountryDetailActivity : AppCompatActivity() {
             setTitle("Sample AlertDialog")
             setMessage("You Clicked Star. What do you want to do?")
             setPositiveButton("OK") { _, _ ->
-                Toast.makeText(applicationContext, "clicked yes", Toast.LENGTH_LONG).show()
+                showToast(applicationContext,"clicked yes")
             }
             setNegativeButton("Cancel") { _, _ ->
-                Toast.makeText(applicationContext, "clicked cancel", Toast.LENGTH_LONG).show()
+                showToast(applicationContext,"clicked cancel")
             }
             show()
         }
-
-
     }
 
     private fun bindUI(country: Country){

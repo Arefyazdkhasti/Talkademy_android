@@ -12,8 +12,8 @@ import com.example.talkademy_phase4.phase7.activities.CountryDetailActivity
 import com.example.talkademy_phase4.phase7.dataClass.Country
 
 const val COUNTRY_NAME = "com.example.talkademy_phase4_country_name"
-class CountryAdapter (
-    private val context: Context,
+
+class CountryAdapter(
     private val data: List<Country>
 ) : RecyclerView.Adapter<CountryAdapter.CountryItemViewHolder>() {
 
@@ -36,16 +36,16 @@ class CountryAdapter (
 
 
     inner class CountryItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setData(country:Country) {
-            if (::binding.isInitialized) {
-                binding.country.text = country.name
-                binding.continent.text = country.continent.toString()
-            }
+        fun setData(country: Country) {
+            if (!::binding.isInitialized) return
+            binding.country.text = country.name
+            binding.continent.text = country.continent.toString()
+
 
             itemView.setOnClickListener {
-                val intent = Intent(context,CountryDetailActivity::class.java)
-                intent.putExtra(COUNTRY_NAME,country)
-                context.startActivity(intent)
+                val intent = Intent(itemView.context, CountryDetailActivity::class.java)
+                intent.putExtra(COUNTRY_NAME, country)
+                itemView.context?.startActivity(intent)
             }
         }
 

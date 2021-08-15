@@ -7,6 +7,7 @@ import com.example.talkademy_phase4.R
 import com.example.talkademy_phase4.databinding.ActivityCountriesListBinding
 import com.example.talkademy_phase4.phase7.Interfaces.IOnBackPressed
 import com.example.talkademy_phase4.phase7.fragments.CountryFragment
+import com.example.talkademy_phase4.phase7.util.UIUtils.Companion.loadFragment
 
 class CountriesListActivity : AppCompatActivity() {
 
@@ -20,17 +21,11 @@ class CountriesListActivity : AppCompatActivity() {
         //set title toolbar
         supportActionBar?.title = "Country List"
 
-        loadFragment(CountryFragment(), "CountryFragment")
+        loadFragment(this,CountryFragment(), "CountryFragment")
     }
 
 
-    fun loadFragment(fragment: Fragment, tag: String) {
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.country_setting_fragment_container_view, fragment, tag)
-            .addToBackStack(tag)
-            .commit()
-    }
+
 
     override fun onBackPressed() {
         val fragment = this.supportFragmentManager.findFragmentById(R.id.country_setting_fragment_container_view)
