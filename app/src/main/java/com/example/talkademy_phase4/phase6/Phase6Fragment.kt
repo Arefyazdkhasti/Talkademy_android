@@ -1,4 +1,4 @@
-package com.example.talkademy_phase4.Phase6
+package com.example.talkademy_phase4.phase6
 
 import android.os.Bundle
 import android.text.Editable
@@ -29,11 +29,15 @@ class Phase6Fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentPhase6Binding.inflate(inflater, container, false)
-        initRecycler()
-        bindUI()
+
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initRecycler()
+        bindUI()
+    }
 
     private fun initRecycler() {
         textList = arrayListOf()
