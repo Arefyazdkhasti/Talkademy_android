@@ -39,6 +39,7 @@
     <string name="select_continents_to_show">Select continents to Show</string>
     <string name="setting">Setting</string>
     <string name="like">like</string>
+    <string name="get_contact_list">Get Contact List</string>
 
 
 </resources>
