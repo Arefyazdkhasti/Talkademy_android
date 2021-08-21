@@ -9,6 +9,8 @@ import android.content.pm.PackageManager
 import android.database.Cursor
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
@@ -21,7 +23,10 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.talkademy_phase4.databinding.FragmentContactListBinding
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
+import kotlin.collections.ArrayList
 
 private const val PERMISSIONS_REQUEST_READ_CONTACTS = 100
 
@@ -30,8 +35,6 @@ class ContactListFragment : Fragment() {
     private var _binding: FragmentContactListBinding? = null
     private val binding
         get() = _binding!!
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +49,7 @@ class ContactListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.showContactsBtn.setOnClickListener {
+            binding.progressBar.visibility = View.VISIBLE
             requestContactPermission()
         }
     }
@@ -120,7 +124,7 @@ class ContactListFragment : Fragment() {
 
         var contactId: String
         var displayName: String
-        var contactImage :String?
+        var contactImage: String?
 
         var contactsInfo: ContactsInfo? = null
 
@@ -134,12 +138,17 @@ class ContactListFragment : Fragment() {
         if (cursor != null) {
             if (cursor.count > 0) {
                 while (cursor.moveToNext()) {
-                    val hasPhoneNumber = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)).toInt()
+                    val hasPhoneNumber =
+                        cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
+                            .toInt()
                     if (hasPhoneNumber > 0) {
 
-                        contactId = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID))
-                        displayName = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
-                        contactImage = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI))
+                        contactId =
+                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID))
+                        displayName =
+                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
+                        contactImage =
+                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.PHOTO_THUMBNAIL_URI))
                         val phoneCursor: Cursor? = contentResolver.query(
                             ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
                             null,
@@ -149,29 +158,62 @@ class ContactListFragment : Fragment() {
                         )
                         if (phoneCursor != null) {
                             if (phoneCursor.moveToNext()) {
-                                val phoneNumber = phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER))
+                                val phoneNumber = phoneCursor.getString(
+                                    phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                                )
 
 
-                                contactsInfo = ContactsInfo(contactId, displayName, phoneNumber,contactImage)
+                                contactsInfo =
+                                    ContactsInfo(contactId, displayName, phoneNumber, contactImage)
                             }
                         }
                         phoneCursor?.close()
-                        if (contactsInfo != null)  contactsInfoList.add(contactsInfo)
+                        if (contactsInfo != null) contactsInfoList.add(contactsInfo)
                     }
                 }
             }
         }
         cursor?.close()
+        println(contactsInfoList.toString())
 
-       val contactAdapter = ContactsAdapter(this,contactsInfoList)
-        binding.contactsRecyclerView.apply{
-            adapter= contactAdapter
-            layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
+        insertDataToRoom(contactsInfoList)
+
+        Handler(Looper.getMainLooper()).postDelayed({
+            initRecycler()
+        }, 100)
+    }
+
+    private fun insertDataToRoom(infoList: ArrayList<ContactsInfo>) {
+        val contactsDatabase = ContactsDataBase
+        val dao = contactsDatabase.getDatabase(requireContext())
+
+        GlobalScope.launch {
+            infoList.forEach {
+                dao.contactDao().insert(it)
+            }
         }
     }
 
+    private fun initRecycler() {
+        val contactsDatabase = ContactsDataBase
+        val dao = contactsDatabase.getDatabase(requireContext())
 
+        val list = arrayListOf<ContactsInfo>()
 
+        GlobalScope.launch {
+            list.addAll(dao.contactDao().getAllContacts())
+        }
+        println(list.size)
+
+        val contactAdapter = ContactsAdapter(this, list)
+        binding.contactsRecyclerView.apply {
+            adapter = contactAdapter
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        }
+
+        binding.progressBar.visibility = View.INVISIBLE
+    }
 
 
 }

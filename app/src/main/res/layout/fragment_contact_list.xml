@@ -29,4 +29,14 @@
         tools:listitem="@layout/contact_item"
         />
 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/show_contacts_btn"
+        app:layout_constraintStart_toEndOf="@+id/show_contacts_btn"
+        app:layout_constraintTop_toTopOf="@id/show_contacts_btn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

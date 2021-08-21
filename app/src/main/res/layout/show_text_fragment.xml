@@ -20,7 +20,6 @@
             android:layout_margin="@dimen/standard_margin"
             android:gravity="center_horizontal"
             android:padding="@dimen/standard_margin"
-            android:text="@{sending_data.content}"
             android:textColor="@color/black"
             android:textSize="@dimen/mega_font"
             app:layout_constraintTop_toTopOf="parent"
