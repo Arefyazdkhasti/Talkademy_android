@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".phase10.ui.getText.GetTextFragment">
+    tools:context=".phase10.ui.fragment.GetTextFragment"
+    android:backgroundTint="@color/silver3">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/edit_text"

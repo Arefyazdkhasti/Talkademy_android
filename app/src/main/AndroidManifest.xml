@@ -19,13 +19,14 @@
         <activity android:name=".phase7.activities.CountriesListActivity" />
         <activity android:name=".phase7.activities.CountryDetailActivity" />
         <activity android:name=".phase9.ContactActivity">
+
+        </activity>
+        <activity android:name=".phase10.ui.Phase10Activity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".phase10.ui.Phase9Activity">
         </activity>
 
     </application>

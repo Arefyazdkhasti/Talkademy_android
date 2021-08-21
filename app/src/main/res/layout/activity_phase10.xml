@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".phase10.ui.Phase9Activity">
+    tools:context=".phase10.ui.Phase10Activity">
 
 
     <androidx.appcompat.widget.AppCompatButton
@@ -12,12 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/standard_margin"
-        android:backgroundTint="@color/blue"
         android:text="@string/send"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:enabled="false"/>
 
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -28,11 +28,12 @@
         app:layout_constraintBottom_toTopOf="@+id/send_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="@dimen/standard_margin">
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/FragmentContainerView1"
-            android:name="com.example.talkademy_phase4.phase10.ui.getText.GetTextFragment"
+            android:name="com.example.talkademy_phase4.phase10.ui.fragment.GetTextFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -40,11 +41,12 @@
 
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/FragmentContainerView2"
-            android:name="com.example.talkademy_phase4.phase10.ui.showText.ShowTextFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            tools:layout="@layout/show_text_fragment" />
+            android:name="com.example.talkademy_phase4.phase10.ui.fragment.ShowTextFragment"
+            tools:layout="@layout/show_text_fragment"
+            />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 </androidx.constraintlayout.widget.ConstraintLayout>
