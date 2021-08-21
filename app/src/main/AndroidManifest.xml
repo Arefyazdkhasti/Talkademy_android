@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.talkademy_phase4">
 
-    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
         android:allowBackup="true"
@@ -16,13 +16,15 @@
         <activity android:name=".phase5.DestinationActivity" />
         <activity android:name=".phase5.TestLifeCycleActivity" />
         <activity android:name=".phase6.Phase6Activity" />
-        <activity android:name=".phase7.activities.CountriesListActivity"/>
+        <activity android:name=".phase7.activities.CountriesListActivity" />
         <activity android:name=".phase7.activities.CountryDetailActivity" />
-        <activity android:name=".phase9.ContactActivity"><intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+        <activity android:name=".phase9.ContactActivity"/>
+        <activity android:name=".phase10.ui.Phase9Activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
     </application>
