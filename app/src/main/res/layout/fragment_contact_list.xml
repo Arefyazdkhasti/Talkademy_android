@@ -7,14 +7,24 @@
     tools:context=".phase9.ContactListFragment">
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/show_contacts_btn"
+        android:id="@+id/get_contacts_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="@dimen/standard_margin"
         android:text="@string/get_contact_list"
+        android:textAllCaps="false"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/choose_contacts_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/standard_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/choose_contact"
+        android:padding="@dimen/standard_margin"
         android:textAllCaps="false"/>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -24,7 +34,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/show_contacts_btn"
+        app:layout_constraintTop_toBottomOf="@id/get_contacts_btn"
         tools:itemCount="4"
         tools:listitem="@layout/contact_item"
         />
@@ -35,8 +45,8 @@
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/show_contacts_btn"
-        app:layout_constraintStart_toEndOf="@+id/show_contacts_btn"
-        app:layout_constraintTop_toTopOf="@id/show_contacts_btn" />
+        app:layout_constraintBottom_toBottomOf="@+id/get_contacts_btn"
+        app:layout_constraintStart_toEndOf="@+id/get_contacts_btn"
+        app:layout_constraintTop_toTopOf="@+id/get_contacts_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
