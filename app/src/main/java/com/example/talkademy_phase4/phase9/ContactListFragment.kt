@@ -185,8 +185,7 @@ class ContactListFragment : Fragment() {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
-
-        binding.progressBar.visibility = View.INVISIBLE
+        if (binding.progressBar.visibility == View.VISIBLE)  binding.progressBar.visibility = View.INVISIBLE
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -195,7 +194,7 @@ class ContactListFragment : Fragment() {
             if (REQUEST_CONTACT == requestCode && data != null) {
 
                 val contactUri: Uri = data.data ?: Uri.EMPTY
-                launchItemFragment(this, getSelectedContactInfo(contactUri)[0])
+                Util.launchItemFragment(this, getSelectedContactInfo(contactUri)[0], "item")
 
             }
         }
@@ -254,19 +253,9 @@ class ContactListFragment : Fragment() {
         return contactsInfoList
     }
 
-    private fun launchItemFragment(fragment: Fragment, contact: ContactsInfo) {
-        println(contact.displayName)
-        val newFragment = ContactItemFragment().newInstance(contact)
-        newFragment.setTargetFragment(fragment, REQUEST_CONTINENTS)
-        loadFragment(fragment.requireActivity() as AppCompatActivity, newFragment)
-    }
-
-
-    fun loadFragment(activity: AppCompatActivity, fragment: Fragment) {
-        activity.supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.contact_item_fragment_container, fragment)
-            .commit()
+    override fun onResume() {
+        super.onResume()
+       // initRecycler()
     }
 
 }

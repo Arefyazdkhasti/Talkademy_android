@@ -49,24 +49,9 @@ class ContactsAdapter(
 
 
             itemView.setOnClickListener {
-                launchItemFragment(fragment,contact)
+                Util.launchItemFragment(fragment,contact,"item")
             }
         }
 
     }
-
-    private fun launchItemFragment(fragment: Fragment,contact: ContactsInfo) {
-        val newFragment = ContactItemFragment().newInstance(contact)
-        newFragment.setTargetFragment(fragment, REQUEST_CONTINENTS)
-        loadFragment(fragment.requireActivity() as AppCompatActivity,newFragment,)
-    }
-
-
-    fun loadFragment(activity: AppCompatActivity, fragment: Fragment) {
-        activity.supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.contact_item_fragment_container, fragment)
-            .commit()
-    }
-
 }

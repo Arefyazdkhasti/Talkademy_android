@@ -1,12 +1,30 @@
 package com.example.talkademy_phase4.phase9
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.talkademy_phase4.R
+import androidx.appcompat.app.AppCompatActivity
+import com.example.talkademy_phase4.databinding.ActivityContactBinding
+
 
 class ContactActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityContactBinding
+
+    companion object{
+        var isTowPain = false
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_contact)
+        binding = ActivityContactBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        determinePaneLayout()
+    }
+
+    private fun determinePaneLayout() {
+        val fragmentItemDetail = binding.contactItemFragmentContainer
+
+        if(fragmentItemDetail != null){
+            isTowPain = true
+        }
     }
 }
