@@ -20,11 +20,16 @@ class ContactActivity : AppCompatActivity() {
         determinePaneLayout()
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        determinePaneLayout()
+    }
+
     private fun determinePaneLayout() {
         val fragmentItemDetail = binding.contactItemFragmentContainer
 
-        if(fragmentItemDetail != null){
-            isTowPain = true
-        }
+        isTowPain = fragmentItemDetail != null
+
+        println(isTowPain)
     }
 }

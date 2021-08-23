@@ -1,5 +1,7 @@
 package com.example.talkademy_phase4.phase9
 
+import android.content.Context
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.talkademy_phase4.R
@@ -32,6 +34,14 @@ class Util {
                 .beginTransaction()
                 .replace(R.id.contact_item_fragment_container, fragment)
                 .commit()
+        }
+
+        fun showToast(context: Context,content:String){
+            Toast.makeText(
+                context,
+                content,
+                Toast.LENGTH_LONG
+            ).show()
         }
 
     }

@@ -58,8 +58,11 @@ class ContactListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.getContactsBtn.setOnClickListener {
-            binding.progressBar.visibility = View.VISIBLE
-            requestContactPermission()
+            if (checkPermission()) {
+                getContacts()
+                binding.progressBar.visibility = View.VISIBLE
+            } else
+                requestPermission()
         }
 
         binding.chooseContactsBtn.apply {
@@ -89,38 +92,6 @@ class ContactListFragment : Fragment() {
         )
     }
 
-    fun requestContactPermission() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (!checkPermission()) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(
-                        requireActivity(),
-                        Manifest.permission.READ_CONTACTS
-                    )
-                ) {
-                    val builder = Builder(requireContext())
-                    builder.setTitle("Read Contacts permission")
-                    builder.setPositiveButton(android.R.string.ok, null)
-                    builder.setMessage("Please enable access to contacts.")
-                    builder.setOnDismissListener(DialogInterface.OnDismissListener {
-                        requestPermissions(
-                            arrayOf(
-                                Manifest.permission.READ_CONTACTS
-                            ), PERMISSIONS_REQUEST_READ_CONTACTS
-                        )
-                    })
-                    builder.show()
-                } else {
-                    requestContactPermission()
-                }
-            } else {
-                getContacts()
-            }
-        } else {
-            getContacts()
-        }
-    }
-
-
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -129,13 +100,10 @@ class ContactListFragment : Fragment() {
         when (requestCode) {
             PERMISSIONS_REQUEST_READ_CONTACTS -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Util.showToast(requireContext(),"Permission Granted")
                     getContacts()
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "You have disabled a contacts permission",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Util.showToast(requireContext(),"Permission Denied")
                 }
                 return
             }
@@ -145,7 +113,6 @@ class ContactListFragment : Fragment() {
 
     private fun getContacts() {
 
-        val contentResolver: ContentResolver = requireContext().contentResolver
         val contactsInfoList = getSelectedContactInfo(ContactsContract.Contacts.CONTENT_URI)
 
         println(contactsInfoList.toString())
@@ -185,7 +152,8 @@ class ContactListFragment : Fragment() {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
         }
-        if (binding.progressBar.visibility == View.VISIBLE)  binding.progressBar.visibility = View.INVISIBLE
+        if (binding.progressBar.visibility == View.VISIBLE)
+            binding.progressBar.visibility = View.INVISIBLE
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -237,10 +205,14 @@ class ContactListFragment : Fragment() {
                                 val phoneNumber = phoneCursor.getString(
                                     phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
                                 )
-
-
-                                contactsInfo =
-                                    ContactsInfo(contactId, displayName, phoneNumber, contactImage)
+                                if (contactId.isNotEmpty() && displayName.isNotEmpty() && phoneNumber.isNotEmpty()) {
+                                    contactsInfo = ContactsInfo(
+                                        contactId,
+                                        displayName,
+                                        phoneNumber,
+                                        contactImage
+                                    )
+                                }
                             }
                         }
                         phoneCursor?.close()
@@ -255,7 +227,7 @@ class ContactListFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-       // initRecycler()
+        initRecycler()
     }
 
 }
