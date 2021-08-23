@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".phase9.ContactActivity">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/contact_list_fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="5"
+        tools:layout="@layout/fragment_contact_list"
+        android:name="com.example.talkademy_phase4.phase9.ContactListFragment"/>
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/contact_item_fragment_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:name="com.example.talkademy_phase4.phase9.ContactItemFragment"/>
+</LinearLayout>
