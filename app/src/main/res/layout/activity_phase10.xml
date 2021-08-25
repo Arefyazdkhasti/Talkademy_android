@@ -1,52 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".phase10.ui.Phase10Activity">
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/send_btn"
+<layout>
+    <data>
+        <variable
+            name="isEmpty"
+            type="Boolean"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/standard_margin"
-        android:text="@string/send"
-        android:textColor="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:enabled="false"/>
+        android:layout_height="match_parent"
+        tools:context=".phase10.ui.Phase10Activity">
 
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintBottom_toTopOf="@+id/send_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="@dimen/standard_margin">
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/FragmentContainerView1"
-            android:name="com.example.talkademy_phase4.phase10.ui.fragment.GetTextFragment"
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/send_btn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            tools:layout="@layout/get_text_fragment" />
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/FragmentContainerView2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:name="com.example.talkademy_phase4.phase10.ui.fragment.ShowTextFragment"
-            tools:layout="@layout/show_text_fragment"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/standard_margin"
+            android:text="@string/send"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:clickable="@{!isEmpty}"
+            android:enabled="@{!isEmpty}"
             />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/standard_margin"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            app:layout_constraintBottom_toTopOf="@+id/send_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/FragmentContainerView1"
+                android:name="com.example.talkademy_phase4.phase10.ui.fragment.GetTextFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:layout="@layout/get_text_fragment" />
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/FragmentContainerView2"
+                android:name="com.example.talkademy_phase4.phase10.ui.fragment.ShowTextFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:layout="@layout/show_text_fragment" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -17,11 +17,19 @@ import java.io.IOException
 
 
 class ContactsAdapter(
-    private val fragment: Fragment,
-    private val data: List<ContactsInfo>
+    private val data: List<ContactsInfo>,
+    private val fragment: Fragment
 ) : RecyclerView.Adapter<ContactsAdapter.ContactItemViewHolder>() {
 
     private lateinit var binding: ContactItemBinding
+
+    /*private val data = ArrayList<ContactsInfo>()
+
+    fun setContacts(data: List<ContactsInfo>) {
+        this.data.clear()
+        this.data.addAll(data)
+        notifyDataSetChanged()
+    }*/
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContactItemViewHolder {
 
@@ -30,6 +38,7 @@ class ContactsAdapter(
 
         return ContactItemViewHolder(binding.root)
     }
+
 
 
     override fun onBindViewHolder(holder: ContactItemViewHolder, position: Int) {

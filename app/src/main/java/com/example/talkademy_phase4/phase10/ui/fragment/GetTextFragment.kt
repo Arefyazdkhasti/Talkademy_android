@@ -52,7 +52,6 @@ class GetTextFragment : Fragment(), DataListener {
                 else
                     (requireActivity()  as EditTextListener).isEdtEmpty(false)
 
-
             }
 
             override fun afterTextChanged(p0: Editable?) {

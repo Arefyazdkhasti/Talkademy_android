@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.example.talkademy_phase4.R
 import com.example.talkademy_phase4.databinding.FragmentContactItemBinding
 import com.example.talkademy_phase4.databinding.FragmentContactListBinding
@@ -48,9 +49,9 @@ class ContactItemFragment : Fragment() {
     }
 
     private fun bindUI(contactsInfo: ContactsInfo) {
-        val bitmap = urlToBitMap(requireContext(), contactsInfo.image)
-        if (bitmap != null)
-            binding.contactImage.setImageBitmap(bitmap)
+
+        if (contactsInfo.image != null)
+            Glide.with(requireContext()).load(contactsInfo.image).circleCrop().into(binding.contactImage)
         else
             binding.contactImage.setImageResource(R.drawable.avatar)
 

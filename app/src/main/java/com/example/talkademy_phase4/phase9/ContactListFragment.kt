@@ -1,38 +1,25 @@
 package com.example.talkademy_phase4.phase9
 
 import android.Manifest
-import android.R.attr
 import android.app.Activity.RESULT_OK
-import android.app.AlertDialog.Builder
-import android.content.ContentResolver
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
-import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.provider.Contacts
 import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityCompat.requestPermissions
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.util.CursorUtil.getColumnIndex
-import com.example.talkademy_phase4.R
 import com.example.talkademy_phase4.databinding.FragmentContactListBinding
-import com.example.talkademy_phase4.phase7.fragments.REQUEST_CONTINENTS
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.util.*
 import kotlin.collections.ArrayList
 
 
@@ -44,6 +31,14 @@ class ContactListFragment : Fragment() {
     private var _binding: FragmentContactListBinding? = null
     private val binding
         get() = _binding!!
+
+    private lateinit var dao: ContactsDataBase
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val contactsDatabase = ContactsDataBase
+        dao = contactsDatabase.getDatabase(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -100,10 +95,10 @@ class ContactListFragment : Fragment() {
         when (requestCode) {
             PERMISSIONS_REQUEST_READ_CONTACTS -> {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    Util.showToast(requireContext(),"Permission Granted")
+                    Util.showToast(requireContext(), "Permission Granted")
                     getContacts()
                 } else {
-                    Util.showToast(requireContext(),"Permission Denied")
+                    Util.showToast(requireContext(), "Permission Denied")
                 }
                 return
             }
@@ -124,9 +119,9 @@ class ContactListFragment : Fragment() {
         }, 100)
     }
 
-    private fun insertDataToRoom(infoList: List<ContactsInfo>) {
-        val contactsDatabase = ContactsDataBase
-        val dao = contactsDatabase.getDatabase(requireContext())
+    private fun insertDataToRoom(infoList: List<ContactsInfo>?) {
+        infoList ?: return
+
 
         GlobalScope.launch {
             infoList.forEach {
@@ -136,17 +131,14 @@ class ContactListFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        val contactsDatabase = ContactsDataBase
-        val dao = contactsDatabase.getDatabase(requireContext())
 
         val list = arrayListOf<ContactsInfo>()
 
         GlobalScope.launch {
             list.addAll(dao.contactDao().getAllContacts())
         }
-        println(list.size)
 
-        val contactAdapter = ContactsAdapter(this, list)
+        val contactAdapter = ContactsAdapter(list, this)
         binding.contactsRecyclerView.apply {
             adapter = contactAdapter
             layoutManager =

@@ -33,16 +33,17 @@ class Phase10Activity : AppCompatActivity(), EditTextListener {
 
     override fun isEdtEmpty(isEmpty: Boolean) {
         println(isEmpty)
+        binding.isEmpty = isEmpty
         if (isEmpty) {
             binding.sendBtn.apply {
-                isClickable = false
-                isEnabled = false
+//                isClickable = false
+//                isEnabled = false
                 setBackgroundColor(ContextCompat.getColor(context.applicationContext, R.color.silver))
             }
         } else {
             binding.sendBtn.apply {
-                isClickable = true
-                isEnabled = true
+//                isClickable = true
+//                isEnabled = true
                 setBackgroundColor(ContextCompat.getColor(context.applicationContext, R.color.blue))
             }
         }
