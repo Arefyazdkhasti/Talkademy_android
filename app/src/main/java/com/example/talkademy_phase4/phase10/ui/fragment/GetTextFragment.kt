@@ -47,10 +47,7 @@ class GetTextFragment : Fragment(), DataListener {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (p0.isNullOrEmpty())
-                    (requireActivity() as EditTextListener).isEdtEmpty(true)
-                else
-                    (requireActivity()  as EditTextListener).isEdtEmpty(false)
+                (requireActivity() as EditTextListener).isEdtEmpty(p0.isNullOrEmpty(),p0)
 
             }
 
@@ -62,11 +59,6 @@ class GetTextFragment : Fragment(), DataListener {
 
     override fun sendData() {
         viewModel.content.postValue(binding.editText.text.toString())
-
-        requireActivity().supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.FragmentContainerView2, ShowTextFragment().newInstance())
-            .commit()
     }
 
 

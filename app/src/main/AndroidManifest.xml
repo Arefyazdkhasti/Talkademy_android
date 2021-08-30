@@ -22,14 +22,13 @@
 
         </activity>
         <activity android:name=".phase10.ui.Phase10Activity">
-
-        </activity>
-        <activity android:name=".phase11.ProgressActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".phase11.ProgressActivity">
         </activity>
     </application>
 

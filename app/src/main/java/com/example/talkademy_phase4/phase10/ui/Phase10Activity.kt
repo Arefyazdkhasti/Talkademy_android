@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.example.talkademy_phase4.R
 import com.example.talkademy_phase4.databinding.ActivityPhase10Binding
+import com.example.talkademy_phase4.phase10.ui.fragment.ShowTextFragment
 import com.example.talkademy_phase4.phase10.util.DataListener
 import com.example.talkademy_phase4.phase10.util.EditTextListener
 
@@ -31,7 +32,7 @@ class Phase10Activity : AppCompatActivity(), EditTextListener {
         }
     }
 
-    override fun isEdtEmpty(isEmpty: Boolean) {
+    override fun isEdtEmpty(isEmpty: Boolean,text:CharSequence?) {
         println(isEmpty)
         binding.isEmpty = isEmpty
         if (isEmpty) {
@@ -40,6 +41,8 @@ class Phase10Activity : AppCompatActivity(), EditTextListener {
 //                isEnabled = false
                 setBackgroundColor(ContextCompat.getColor(context.applicationContext, R.color.silver))
             }
+            val fragment = ShowTextFragment()
+            fragment.newInstance()
         } else {
             binding.sendBtn.apply {
 //                isClickable = true

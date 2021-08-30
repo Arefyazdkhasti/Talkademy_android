@@ -5,5 +5,5 @@ interface DataListener {
 }
 
 interface EditTextListener{
-    fun isEdtEmpty(isEmpty:Boolean)
+    fun isEdtEmpty(isEmpty:Boolean,text:CharSequence?)
 }

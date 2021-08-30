@@ -37,7 +37,7 @@ class ProgressActivity : AppCompatActivity() {
         val animalsObserver: Observer<Int> = getProgressObserver()
 
         binding.startBtn.setOnClickListener {
-            setTimer()
+            //setTimer()
 
             // observer subscribing to observable
             animalsObservable.concatMap { s ->
@@ -59,9 +59,11 @@ class ProgressActivity : AppCompatActivity() {
             override fun onNext(t: Int) {
                 println("Name: $t")
                 setProgressPercentage(t)
-                if (t != 100)
+                /*if (t != 100)
                     setTimer()
                 else
+                    binding.timer.text = "Finished!"*/
+                if (t == 100)
                     binding.timer.text = "Finished!"
             }
 

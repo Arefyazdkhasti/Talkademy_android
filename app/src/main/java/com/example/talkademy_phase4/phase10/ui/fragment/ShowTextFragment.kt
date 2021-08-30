@@ -44,5 +44,8 @@ class ShowTextFragment : Fragment() {
         })
     }
 
-
+    //todo remove observer
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }
